@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MyScribe | A page built for Mike</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1E1F22; --paper:#FAFAF8; --coral:#F6D9CF; --dot:#D9533F;
+    --sage:#DCEBD3; --mist:#D6E6EE; --lilac:#E6DDF3; --butter:#F6EBB5;
+    --grey:#EFEFED; --soft:#5A5B60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--charcoal);line-height:1.55;font-size:18px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  section{padding:88px 0;border-bottom:1px solid #E6E6E2}
+  section:last-of-type{border-bottom:none}
+  .kicker{font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-bottom:18px}
+  h1{font-size:clamp(40px,8vw,64px);line-height:1.05;font-weight:700;letter-spacing:-.02em;margin-bottom:24px}
+  h2{font-size:clamp(30px,5.5vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.015em;margin-bottom:22px}
+  h3{font-size:20px;font-weight:700;margin-bottom:8px}
+  p{margin-bottom:16px}
+  .lead{font-size:21px;color:var(--soft)}
+  .wordmark{font-weight:700;font-size:22px;padding:28px 0}
+  .note{font-size:15px;color:var(--soft)}
+  .pill{display:inline-block;font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+
+  /* hero */
+  .hero{padding-top:40px;min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+  .scroll-hint{margin-top:40px;font-size:15px;color:var(--soft)}
+
+  /* phone */
+  .phone-row{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+  @media(min-width:760px){.phone-row{grid-template-columns:1.1fr 1fr}}
+  .phone-stage{background:var(--coral);border-radius:28px;padding:36px 28px;display:flex;justify-content:center}
+  .phone{width:270px;background:var(--charcoal);border-radius:44px;padding:10px;box-shadow:0 20px 40px rgba(30,31,34,.15)}
+  .screen{background:var(--paper);border-radius:36px;padding:22px 18px 18px;height:500px;display:flex;flex-direction:column}
+  .status{display:flex;justify-content:space-between;font-size:12px;font-weight:500;padding:0 6px}
+  .batt{width:22px;height:11px;border:1.5px solid var(--charcoal);border-radius:3px;position:relative}
+  .batt:after{content:"";position:absolute;inset:1.5px 4px 1.5px 1.5px;background:var(--charcoal);border-radius:1px}
+  .app-name{font-weight:700;font-size:17px;margin:16px 6px 0}
+  .spacer{flex:1}
+  .ask{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--soft);margin:0 6px 10px}
+  .ask span{width:22px;height:22px;border-radius:50%;background:var(--butter);display:grid;place-items:center;font-size:11px;color:var(--charcoal)}
+  .q{font-size:25px;font-weight:700;line-height:1.08;letter-spacing:-.01em;margin:0 6px 8px}
+  .sub{font-size:12px;color:var(--soft);margin:0 6px 14px}
+  .btn{border-radius:999px;text-align:center;font-weight:500;font-size:13px;padding:12px;margin-bottom:9px}
+  .btn.rec{background:var(--coral)}
+  .btn.rec:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dot);margin-right:8px;vertical-align:1px}
+  .btn.no{background:var(--grey)}
+  .convs{background:var(--lilac);border-radius:16px;padding:10px 14px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+  .convs b{display:block;font-size:13px}
+  .convs small{color:var(--soft)}
+
+  /* lines */
+  .quote-card{background:var(--grey);border-radius:20px;padding:24px 26px;margin:28px 0}
+  .quote-card p{margin:0;font-size:20px}
+  .lines{list-style:none;margin-top:24px}
+  .lines li{font-size:22px;font-weight:700;line-height:1.25;padding:18px 0;border-top:1px solid #E6E6E2}
+  .lines li:last-child{border-bottom:1px solid #E6E6E2}
+
+  /* palette */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:28px}
+  .sw{border-radius:18px;padding:20px;min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+  .sw b{font-size:17px}
+  .sw code{font-family:inherit;font-size:13px;opacity:.75}
+  .sw p{font-size:14px;margin:6px 0 0}
+  .rules{margin-top:28px;padding-left:20px}
+  .rules li{margin-bottom:8px}
+
+  /* voice */
+  .two{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+  @media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+  .box{border-radius:20px;padding:22px 24px}
+  .box ul{list-style:none}
+  .box li{padding:7px 0;border-top:1px solid rgba(30,31,34,.08);font-size:16px}
+  .box li:first-child{border-top:none}
+
+  /* tiers */
+  .tier{border-radius:22px;padding:26px 26px 18px;margin-top:18px}
+  .tier p{font-size:16px}
+
+  /* proof */
+  .stat{padding:22px 0;border-top:1px solid #E6E6E2}
+  .stat .big{font-size:clamp(34px,6vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1}
+  .stat p{margin:8px 0 0;font-size:16px}
+  .stat cite{display:block;font-style:normal;font-size:13px;color:var(--soft);margin-top:4px}
+
+  /* script */
+  .script{background:#fff;border:1px solid #E6E6E2;border-radius:22px;padding:30px 28px;margin-top:28px}
+  .script .card{display:inline-block;background:var(--charcoal);color:var(--paper);font-size:13px;font-weight:500;padding:6px 12px;border-radius:8px;margin:14px 0 10px}
+  .script .dir{font-size:15px;color:var(--soft);font-style:italic;margin:10px 0}
+  .script .who{font-weight:700}
+  .script p{font-size:17px}
+  .summary{background:var(--sage);border-radius:18px;padding:18px 20px;margin:14px 0}
+  .summary small{display:block;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+  .summary p{margin:0;font-size:17px}
+  .scenes{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .scenes span{background:var(--grey);border-radius:999px;padding:9px 16px;font-size:15px}
+
+  /* ideas */
+  .idea{padding:20px 0;border-top:1px solid #E6E6E2}
+  .idea p{margin:0;font-size:16px;color:var(--soft)}
+
+  footer{padding:80px 0 100px;text-align:left}
+  footer .end{font-size:clamp(28px,5vw,38px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin-bottom:24px}
+  a{color:var(--charcoal)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="wordmark">MyScribe</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">A page built for Mike</div>
+    <h1>Most websites are made for thousands of eyes. This one is for you.</h1>
+    <p class="lead">Thanks for today. Here is everything I promised: the look, the voice, what's fixed, what's yours, and a few ideas to chase. Have a scroll.</p>
+    <p class="scroll-hint">Mark Winterburn, Founder, MyScribe</p>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">In one breath</div>
+    <div class="phone-row">
+      <div>
+        <h2>Your conversation, remembered.</h2>
+        <p>MyScribe writes down what was actually said, so people can go back to it. You ask first, it listens, then it gives you three things:</p>
+        <p><b>A summary.</b> The story of the conversation, in plain words, every sentence linked to the moment it was said.</p>
+        <p><b>Ask Your Conversation.</b> Ask "was it one tablet or two?" and it shows you the exact words. It never makes up an answer.</p>
+        <p><b>Share.</b> Send the summary to whoever you choose. They don't need the app to read it.</p>
+      </div>
+      <div class="phone-stage">
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><div class="batt"></div></div>
+          <div class="app-name">MyScribe</div>
+          <div class="spacer"></div>
+          <div class="ask"><span>&rarr;</span>Ask first. You can read this out.</div>
+          <div class="q">Do you mind<br>if I record this?</div>
+          <div class="sub">Just to help me remember.</div>
+          <div class="btn rec">Yes, start recording</div>
+          <div class="btn no">Not now</div>
+          <div class="convs"><div><b>My conversations</b><small>3 saved</small></div><span>&rsaquo;</span></div>
+        </div></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:28px">That's the home screen. It opens on the question, because the whole product starts with asking.</p>
+  </div>
+</section>
+
+<!-- FRAMING -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The framing</div>
+    <h2>The AI surge is real. We're the gentle end of it.</h2>
+    <p>The language around MyScribe matters more than most products, because the whole thing is about words: what was actually said, and nothing added. A single word can tip it from reassuring to alarming.</p>
+    <p>The surge is real. Every clinician is about to get an AI scribe, and that's the moment we ride. But MyScribe isn't a shield against clinicians or against AI, so words like "protection" or "defence" pull it the wrong way. We use AI too. We just use very little of it, and only to get the most out of the actual words.</p>
+    <p>The story is balance, not defence. Every clinician is getting an AI scribe. Who's writing things down for the patient?</p>
+    <p>Some lines to play with:</p>
+    <ul class="lines">
+      <li>The AI surge is here. This is the gentle end of it.</li>
+      <li>Everyone's talking about AI. We're more interested in what was actually said.</li>
+      <li>Gentle AI, for the words that matter.</li>
+      <li>The AI does as little as possible. The words do the rest.</li>
+    </ul>
+    <p class="note" style="margin-top:20px">Already settled: <b>For every conversation that matters.</b> (tagline and end card) and <b>We add nothing to what was said, and do everything with it.</b></p>
+  </div>
+</section>
+
+<!-- LOOK -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The look</div>
+    <h2>Charcoal and pastels. Every colour has a job.</h2>
+    <p>Each pastel always means the same part of the app. Keep that true in marketing and people learn the product before they've opened it.</p>
+    <div class="swatches">
+      <div class="sw" style="background:var(--charcoal);color:var(--paper)"><div><b>Charcoal</b><p>Text, wordmark, actions</p></div><code>#1E1F22</code></div>
+      <div class="sw" style="background:var(--paper);border:1px solid #E6E6E2"><div><b>Off-white</b><p>Background, everywhere</p></div><code>#FAFAF8</code></div>
+      <div class="sw" style="background:var(--coral)"><div><b>Soft coral</b><p>Recording. Only recording.</p></div><code>#F6D9CF</code></div>
+      <div class="sw" style="background:var(--dot);color:#fff"><div><b>Record dot</b><p>The red dot, nothing else</p></div><code>#D9533F</code></div>
+      <div class="sw" style="background:var(--sage)"><div><b>Sage</b><p>The summary</p></div><code>#DCEBD3</code></div>
+      <div class="sw" style="background:var(--mist)"><div><b>Mist</b><p>Ask Your Conversation</p></div><code>#D6E6EE</code></div>
+      <div class="sw" style="background:var(--lilac)"><div><b>Lilac</b><p>My conversations, and the logo</p></div><code>#E6DDF3</code></div>
+      <div class="sw" style="background:var(--butter)"><div><b>Butter</b><p>Highlights unclear words</p></div><code>#F6EBB5</code></div>
+    </div>
+    <ul class="rules">
+      <li>Text on pastels is always charcoal.</li>
+      <li>Coral means recording. Don't use it as a general accent.</li>
+      <li>Typeface: <b>DM Sans</b> (free on Google Fonts).</li>
+      <li>Logo: two lines finished by a pen nib, charcoal on lilac. I'll send the files through Matt.</li>
+      <li>"MyScribe" is one word, capital M and S. "My conversations" and "summary" are sentence case.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The voice</div>
+    <h2>Plain, warm, a bit dry.</h2>
+    <p>Write like a kind person explaining something to a neighbour who is tired and worried. Short sentences. No jargon.</p>
+    <div class="two">
+      <div class="box" style="background:var(--sage)">
+        <h3>Say</h3>
+        <ul>
+          <li>people</li>
+          <li>conversation</li>
+          <li>ask first</li>
+          <li>what was actually said</li>
+          <li>free to download, pay only for what you use</li>
+          <li>your record, on your phone</li>
+        </ul>
+      </div>
+      <div class="box" style="background:var(--grey)">
+        <h3>Avoid</h3>
+        <ul>
+          <li>users</li>
+          <li>protection, shield, safeguard</li>
+          <li>revolutionary, game-changing</li>
+          <li>specific launch dates</li>
+          <li>prices (we share them at launch)</li>
+          <li>anything that sounds like medical advice</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Who decides what</div>
+    <h2>Three tiers, so you can move fast.</h2>
+    <p>I'm precious about a few things. The important thing is that it works, and I want you to go big. This is where the lines are, so we don't argue over every word.</p>
+
+    <div class="tier" style="background:var(--charcoal);color:var(--paper)">
+      <span class="pill" style="background:var(--paper);color:var(--charcoal)">Locked</span>
+      <h3>These keep MyScribe safe to grow</h3>
+      <p>Never sold. Never used to train AI. Audio isn't kept once the words are written down. Always ask first. No medicine names or doses in summaries. No claims that it's a medical device or gives clinical advice. The record belongs to the person. One wrong line here and a GP, a regulator or a journalist uses it against us just as we start to get noticed.</p>
+    </div>
+
+    <div class="tier" style="background:var(--lilac)">
+      <span class="pill" style="background:var(--charcoal);color:var(--paper)">You draft, I sign off</span>
+      <h3>Words that become the brand</h3>
+      <p>Headlines and taglines. Any claim about AI. Naming partners. Anything with a date or a price. Send them over and I'll turn them round quickly.</p>
+    </div>
+
+    <div class="tier" style="background:var(--coral)">
+      <span class="pill" style="background:var(--charcoal);color:var(--paper)">Your playground</span>
+      <h3>Go for it</h3>
+      <p>Channels, campaigns, visuals within the colour rules, timing, stunts, partnerships, testing what works and killing what doesn't. Surprise me.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Proof points</div>
+    <h2>People are already doing this.</h2>
+    <div class="stat"><div class="big">7 in 10</div><p>patients would like to record their clinical appointments, and roughly half of them would do it without asking.</p><cite>Elwyn, Barr &amp; Grande, BMJ Open, 2015</cite></div>
+    <div class="stat"><div class="big">40 to 80%</div><p>of what's said in a medical appointment is forgotten straight away.</p><cite>Kessels, 2003</cite></div>
+    <div class="stat"><div class="big">1 in 5</div><p>GP appointments are for non-medical needs. The answer is often a name, a number or a service, which are the easiest things to forget.</p></div>
+    <div class="stat"><div class="big">1 to 4</div><p>times patients replay recordings of their appointments, and they share them with family.</p><cite>Dommershuijsen et al., Health Communication, systematic review</cite></div>
+    <p style="margin-top:24px">We've also published an open <a href="https://hellomyscribe.com/standard">Patient Recording Standard</a> that any recording tool, ours included, can be measured against. Opsimath Ltd is ICO registered (ZC286535).</p>
+  </div>
+</section>
+
+<!-- SERIES -->
+<section>
+  <div class="wrap">
+    <div class="kicker">An idea I'd love you to run with</div>
+    <h2>"This is where it's useful."</h2>
+    <p>A YouTube series of short filmed scenes. Me to camera, then a real-life moment where MyScribe helps, then "after the conversation". It's tongue in cheek: the advert admits it's an advert, and then something true sneaks in under the joke. Like the product, it won't pretend.</p>
+    <p>Every scene opens with someone asking "Do you mind if I record this?", so the Standard is on screen without anyone reading it.</p>
+
+    <div class="script">
+      <p><span class="who">Mark, to camera, walking:</span> Hi. This is MyScribe, and this is where it's useful.</p>
+      <div class="card">Scene 1. Visiting Dad.</div>
+      <p><span class="who">Mark:</span> I'm off for my weekly visit to see Dad.</p>
+      <p class="dir">(beat)</p>
+      <p>He's not really my dad. He's an actor.</p>
+      <p class="dir">(beat)</p>
+      <p>He might be someone's dad, though. That might be the point.</p>
+      <p class="dir">Inside. Mark sits down, phone on the table.</p>
+      <p><span class="who">Mark:</span> Do you mind if I record this? Just to help me remember.</p>
+      <p><span class="who">"Dad":</span> Go on then.</p>
+      <p class="dir">A short, warm, rambling chat: the nurse he likes, a story from 1974, what he wants for his birthday.</p>
+      <div class="card">After the conversation.</div>
+      <p class="dir">"Dad" reads the summary on the phone, smiling. Close-up:</p>
+      <div class="summary"><small>Summary</small><p>Dad said the next pint is on him.</p></div>
+      <p><span class="who">Mark, to camera:</span> He says that every time.</p>
+      <p class="dir">(beat)</p>
+      <p>I love it.</p>
+      <p class="dir">(beat)</p>
+      <p>Now I've got it in writing.</p>
+      <p class="dir">(beat)</p>
+      <p>He's not really my dad. But he's someone's.</p>
+      <div class="card">MyScribe. For every conversation that matters.</div>
+    </div>
+
+    <p style="margin-top:28px">The same shape every time:</p>
+    <ol class="rules" style="margin-top:8px">
+      <li>"Hi. This is MyScribe, and this is where it's useful."</li>
+      <li>The honest reveal: "She's not really my mum."</li>
+      <li>The ask: "Do you mind if I record this?"</li>
+      <li>"After the conversation", and a small payoff.</li>
+      <li>The sign-off, the same every time: "She's not really my mum. But she's someone's."</li>
+      <li>End card: For every conversation that matters.</li>
+    </ol>
+    <p style="margin-top:16px">Possible final episode: an actual pint with "Dad", and he pays.</p>
+    <p>Scenes I can see:</p>
+    <div class="scenes">
+      <span>Visiting Dad</span><span>The GP appointment</span><span>The nurse appointment</span><span>Mum's hospital follow-up</span><span>Parents' evening</span><span>The vet</span><span>A builder's quote</span><span>The once-a-year music chat with an old friend</span>
+    </div>
+    <p style="margin-top:24px"><b>Health comes first.</b> It's where we launch, so the GP scene is episode 2. It opens:</p>
+    <div class="script" style="margin-top:12px">
+      <div class="card">Scene 2. The GP appointment.</div>
+      <p><span class="who">Mark, to camera:</span> He's not really my GP.</p>
+      <p class="dir">(beat)</p>
+      <p>We're pretending, so you can see how MyScribe works for every conversation that matters.</p>
+      <p class="dir">... and at the end:</p>
+      <p><span class="who">Mark:</span> He's not really my GP. But he's someone's.</p>
+    </div>
+    <p style="margin-top:24px">The joke is always on me, never on the clinician. The payoff is the thing you'd forget: the name of a service, a phone number, or "was it one tablet or two?" answered in Ask Your Conversation with the exact words.</p>
+  </div>
+</section>
+
+<!-- IDEAS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Worth looking into</div>
+    <h2>A few threads to pull.</h2>
+    <div class="idea"><h3>Fill the 108</h3><p>We're looking for 108 iPhone owners to test MyScribe free in December. The first job, and the first number to watch.</p></div>
+    <div class="idea"><h3>Carers and families</h3><p>"How did you get on at the doctor's, Mum?" The person who installs MyScribe may not be the patient. Often it's the one who couldn't be in the room.</p></div>
+    <div class="idea"><h3>The P.S. on every shared summary</h3><p>Every summary someone shares carries a short sign-off with a link back to MyScribe. Growth built into the product. How far can we push it?</p></div>
+    <div class="idea"><h3>Gifted Minutes</h3><p>People and organisations buy minutes for people who can't afford them. Every gifted minute is bought by someone. A campaign with a conscience.</p></div>
+    <div class="idea"><h3>Charities</h3><p>Macmillan, Dementia UK and the Patients Association all work with people for whom remembering what was said really matters.</p></div>
+    <div class="idea"><h3>Instagram, once we're in the stores</h3><p>We have GIFs in the house style already. They should travel well there.</p></div>
+    <div class="idea"><h3>HTN Now Awards</h3><p>SME/Start-up Innovation category. Entries close 14 December.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="end">The AI does as little as possible.<br>The words do the rest.</div>
+    <p>Over to you. Send anything my way through Matt or at <a href="mailto:mark@hellomyscribe.com">mark@hellomyscribe.com</a>.</p>
+    <p class="note">Mark Winterburn, Founder, MyScribe</p>
+  </div>
+</footer>
+
+</body>
+</html>
