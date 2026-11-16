@@ -26,7 +26,11 @@
   h3{font-size:20px;font-weight:700;margin-bottom:8px}
   p{margin-bottom:16px}
   .lead{font-size:21px;color:var(--soft)}
-  .wordmark{font-weight:700;font-size:22px;padding:28px 0}
+  .wordmark{font-weight:700;font-size:22px;padding:28px 0;display:flex;align-items:center;gap:12px}
+  .wordmark svg{display:block}
+  .logo-row{display:flex;flex-wrap:wrap;align-items:center;gap:28px;margin-top:28px}
+  .logo-row svg{display:block;filter:drop-shadow(0 10px 20px rgba(30,31,34,.10))}
+  .logo-row p{font-size:16px;max-width:340px;margin:0}
   .note{font-size:15px;color:var(--soft)}
   .pill{display:inline-block;font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;margin-bottom:12px}
 
@@ -115,7 +119,7 @@
 <body>
 
 <div class="wrap">
-  <div class="wordmark">MyScribe</div>
+  <div class="wordmark"><svg width="40" height="40" viewBox="0 0 100 100" role="img" aria-label="MyScribe icon"><rect width="100" height="100" rx="22.37" fill="#E6DDF3"/><path transform="translate(52 58) scale(2.15)" d="M-8 0C-8.4-8.5-5-15.5 4.5-19.5C-0.5-15-1.8-11.5-0.6-8A8 8 0 1 1-8 0Z" fill="#1E1F22"/></svg>MyScribe</div>
 </div>
 
 <!-- HERO -->
@@ -123,7 +127,7 @@
   <div class="wrap">
     <div class="kicker">A page built for Mike</div>
     <h1>Most websites are made for thousands of eyes. This one is for you.</h1>
-    <p class="lead">Thanks for today. Here is everything I promised: the look, the voice, what's fixed, what's yours, and a few ideas to chase. Have a scroll.</p>
+    <p class="lead">Thanks for last week. Here is everything I promised: the look, the voice, what's fixed, what's yours, and a few ideas to chase. Have a scroll.</p>
     <p class="scroll-hint">Mark Winterburn, Founder, MyScribe</p>
   </div>
 </section>
@@ -193,12 +197,12 @@
       <div class="sw" style="background:var(--lilac)"><div><b>Lilac</b><p>My conversations, and the logo</p></div><code>#E6DDF3</code></div>
       <div class="sw" style="background:var(--butter)"><div><b>Butter</b><p>Highlights unclear words</p></div><code>#F6EBB5</code></div>
     </div>
+    <div class="logo-row"><svg width="160" height="160" viewBox="0 0 100 100" role="img" aria-label="MyScribe icon"><rect width="100" height="100" rx="22.37" fill="#E6DDF3"/><path transform="translate(52 58) scale(2.15)" d="M-8 0C-8.4-8.5-5-15.5 4.5-19.5C-0.5-15-1.8-11.5-0.6-8A8 8 0 1 1-8 0Z" fill="#1E1F22"/></svg><p><b>The icon.</b> A single open quote mark with a tapered tail, charcoal on lilac. Words, said. It replaces the old pen nib. Keep it still (no animation), give it room, and don't redraw it. I'll send the files through Matt.</p></div>
     <ul class="rules">
       <li>Text on pastels is always charcoal.</li>
       <li>Coral means recording. Don't use it as a general accent.</li>
       <li>Typeface: <b>DM Sans</b> (free on Google Fonts).</li>
-      <li>Logo: a single open quote mark, charcoal on lilac. It replaces the old pen nib. I'll send the files through Matt.</li>
-      <li>The home screen question, "Do you mind if I record this?", is set in DM Sans Black.</li>
+            <li>The home screen question, "Do you mind if I record this?", is set in DM Sans Black.</li>
       <li>"MyScribe" is one word, capital M and S. "My conversations" and "summary" are sentence case.</li>
     </ul>
   </div>
